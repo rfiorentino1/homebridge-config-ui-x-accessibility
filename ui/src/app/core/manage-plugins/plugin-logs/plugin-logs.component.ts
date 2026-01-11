@@ -128,6 +128,15 @@ export class PluginLogsComponent implements OnInit, OnDestroy {
     this.$log.destroyTerminal()
   }
 
+  public suppressTooltipA11y(target: HTMLElement) {
+    setTimeout(() => {
+      target.removeAttribute('aria-describedby')
+      document.querySelectorAll('.tooltip[role="tooltip"]').forEach((tooltip) => {
+        tooltip.setAttribute('aria-hidden', 'true')
+      })
+    })
+  }
+
   public dismissModal() {
     this.$activeModal.dismiss('Dismiss')
   }

@@ -30,9 +30,16 @@
     <div class="text-end">
       <button
         type="button"
+        #downloadButton
         class="btn btn-primary"
         (click)="downloadLogFile()"
         [attr.aria-label]="'logs.title_download_log_file' | translate"
+        [ngbTooltip]="'logs.title_download_log_file' | translate"
+        (shown)="suppressTooltipA11y(downloadButton)"
+        container="body"
+        placement="top"
+        [openDelay]="150"
+        triggers="hover"
         [disabled]="midAction"
       >
         <i class="fas fa-download" aria-hidden="true"></i>
@@ -40,9 +47,16 @@
       @if (childBridges.length) {
       <button
         type="button"
+        #restartButton
         class="btn btn-danger ms-3"
         (click)="restartChildBridges()"
         [attr.aria-label]="(childBridges.length > 1 ? 'child_bridge.restart_plural' : 'child_bridge.restart') | translate"
+        [ngbTooltip]="(childBridges.length > 1 ? 'child_bridge.restart_plural' : 'child_bridge.restart') | translate"
+        (shown)="suppressTooltipA11y(restartButton)"
+        container="body"
+        placement="top"
+        [openDelay]="150"
+        triggers="hover"
         [disabled]="midAction"
       >
         <i class="fas fa-power-off" aria-hidden="true"></i>
