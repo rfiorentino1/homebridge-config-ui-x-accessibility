@@ -112,7 +112,11 @@
               }
               <!-- // -->
               <!-- restart in progress spinner -->
-              <i [hidden]="!childBridgeRestartInProgress" class="fas fa-circle-notch fa-spin fa-lg grey-text ms-3"></i>
+              <i
+                [hidden]="!childBridgeRestartInProgress"
+                class="fas fa-circle-notch fa-spin fa-lg grey-text ms-3"
+                aria-hidden="true"
+              ></i>
               <!-- // -->
               <!-- child bridge status (good status is not shown) -->
               @if (plugin.installedVersion && (!plugin.newHbScope || plugin.newHbScope.switch !==
@@ -134,17 +138,23 @@
           <!-- // -->
           <!-- plugin npm name/info modal -->
           <p class="card-text mb-2 text-truncate">
-            <a href="javascript:void(0)" (click)="pluginInfoModal(plugin)" class="card-link">
+            <button
+              type="button"
+              class="card-link btn btn-link p-0 text-decoration-none"
+              (click)="pluginInfoModal(plugin)"
+              aria-label="Plugin Info"
+            >
               <i
                 class="fas fa-shield-alt fa-lg me-1"
+                aria-hidden="true"
                 [ngClass]="{
                   'purple-text': plugin.isHbScoped,
                   'green-text': !plugin.isHbScoped && (plugin.verifiedPlugin || plugin.verifiedPlusPlugin),
                   'orange-text': !plugin.isHbScoped && !plugin.verifiedPlugin && !plugin.verifiedPlusPlugin,
                 }"
               ></i>
-              <span class="grey-text">{{ plugin.name }}</span>
-            </a>
+              <span class="grey-text" aria-hidden="true">{{ plugin.name }}</span>
+            </button>
           </p>
           <!-- // -->
           <!-- plugin author and donate modal -->
@@ -200,38 +210,53 @@
               <!-- // -->
               <!-- icon for plugin disabled -->
               @if (plugin.installedVersion && plugin.disabled) {
-              <a href="javascript:void(0)" (click)="enablePlugin(plugin)" class="card-link red-text">
+              <button
+                type="button"
+                class="card-link btn btn-link p-0 text-decoration-none red-text"
+                (click)="enablePlugin(plugin)"
+                [attr.aria-label]="'plugins.status_disabled' | translate"
+              >
                 <i
                   class="far fa-pause-circle fa-lg"
+                  aria-hidden="true"
                   [ngbTooltip]="'plugins.status_disabled' | translate"
                   container="body"
                   [openDelay]="150"
                   triggers="hover"
                 ></i>
-              </a>
+              </button>
               }
               <!-- // -->
               <!-- icon for plugin not installed, to download -->
               @if (plugin.publicPackage && !plugin.installedVersion) {
-              <a href="javascript:void(0)" (click)="installAlternateVersion()">
-                <i class="far fa-arrow-alt-circle-down fa-lg"></i>
-              </a>
+              <button
+                type="button"
+                class="card-link btn btn-link p-0 text-decoration-none"
+                (click)="installAlternateVersion()"
+                container="body"
+                [openDelay]="150"
+                triggers="hover"
+                [ngbTooltip]="'Install ' + plugin.displayName"
+                [attr.aria-label]="'Install ' + plugin.displayName"
+              >
+                <i class="far fa-arrow-alt-circle-down fa-lg" aria-hidden="true"></i>
+              </button>
               }
               <!-- // -->
               @if (plugin.installedVersion) {
               <span ngbDropdown placement="left" class="d-inline-block ms-3 mt-auto">
                 <!-- icon to expand dropdown -->
-                <a
-                  class="card-link text-decoration-none mt-auto"
-                  href="javascript:void(0)"
+                <button
+                  type="button"
+                  class="card-link btn btn-link p-0 text-decoration-none mt-auto"
                   style="outline: none"
-                  [attr.aria-label]="'Plugin Actions Dropdown'"
+                  [attr.aria-label]="'Plugin Actions'"
                   ngbDropdownToggle
                 >
-                  <i class="fa-solid fa-ellipsis-v fa-lg"></i>
-                </a>
+                  <i class="fa-solid fa-ellipsis-v fa-lg" aria-hidden="true"></i>
+                </button>
                 <!-- // -->
-                <div ngbDropdownMenu aria-labelledby="Plugin Actions Dropdown">
+                <div ngbDropdownMenu [attr.aria-label]="'Plugin Actions'">
                   <!-- plugin config -->
                   <button ngbDropdownItem (click)="openSettings()">
                     <i class="fas fa-sliders"></i>

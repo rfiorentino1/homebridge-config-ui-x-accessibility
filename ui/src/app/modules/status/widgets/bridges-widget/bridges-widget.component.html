@@ -34,9 +34,10 @@
           [openDelay]="150"
           triggers="hover"
           placement="left"
+          aria-hidden="true"
         ></i>
         } @if (homebridgeStatus.status === 'pending' || isRestarting) {
-        <i class="fas fa-circle-notch fa-spin"></i>
+        <i class="fas fa-circle-notch fa-spin" aria-hidden="true"></i>
         }
       </div>
     </div>
@@ -71,9 +72,10 @@
           [openDelay]="150"
           triggers="hover"
           placement="left"
+          aria-hidden="true"
         ></i>
         } @if (bridge.status === 'pending' || bridge.restarting || isRestarting) {
-        <i class="fas fa-circle-notch fa-spin"></i>
+        <i class="fas fa-circle-notch fa-spin" aria-hidden="true"></i>
         }
       </div>
     </div>
