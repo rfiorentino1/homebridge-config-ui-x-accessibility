@@ -56,6 +56,10 @@ export class GarageDoorOpenerComponent {
     }
   }
 
+  public onClick() {
+    this.onActivate()
+  }
+
   private buildActionAnnouncement(): string {
     const name = this.service?.customName || this.service?.serviceName || ''
 
