@@ -1,6 +1,5 @@
 import { NgClass } from '@angular/common'
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core'
-import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap'
 import { TranslatePipe, TranslateService } from '@ngx-translate/core'
 import { ToastrService } from 'ngx-toastr'
 import { firstValueFrom } from 'rxjs'
@@ -17,7 +16,6 @@ import { Widget } from '@/app/modules/status/widgets/widgets.interfaces'
   standalone: true,
   imports: [
     NgClass,
-    NgbTooltip,
     TranslatePipe,
   ],
 })
