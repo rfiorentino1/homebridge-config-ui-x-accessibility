@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Merge upstream into latest
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.SYNC_PAT }}
         run: |
           set -e
           response=$(gh api -X POST \
